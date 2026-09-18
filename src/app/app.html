@@ -1,0 +1,29 @@
+<app-controls
+  (onOrdenarNombre)="ordenarPorNombre()"
+  (onOrdenarId)="ordenarPorId()"
+  (onInvertir)="invertir()">
+</app-controls>
+
+@if (users().length > 0) {
+  <div class="users-container">
+    <h2 class="page-title">Directorio de usuarios</h2>
+
+    <div class="users-grid">
+      @for (user of users(); track user.id) {
+        <article class="user-card">
+          <div class="user-card__header">
+            <div class="user-avatar">{{ user.name.charAt(0) }}</div>
+            <div>
+              <h3>{{ user.name }}</h3>
+              <span class="user-name">@{{ user.username }}</span>
+            </div>
+          </div>
+
+          <p><strong>Correo:</strong> {{ user.email }}</p>
+        </article>
+      }
+    </div>
+  </div>
+} @else {
+  <p>No hay usuarios para mostrar.</p>
+}

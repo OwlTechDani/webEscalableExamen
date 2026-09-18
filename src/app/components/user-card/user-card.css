@@ -1,0 +1,10 @@
+.user-card {
+  width: 320px;
+  margin: 20px;
+  /* (borde, padding, sombras o estilos previos de la tarjeta) */
+}
+
+.user-card img {
+  width: 100%;
+  /* estilos de la imagen */
+}
