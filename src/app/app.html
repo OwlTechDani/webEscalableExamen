@@ -4,26 +4,18 @@
   (onInvertir)="invertir()">
 </app-controls>
 
-@if (users().length > 0) {
-  <div class="users-container">
-    <h2 class="page-title">Directorio de usuarios</h2>
+<header>
+  <h1>Directorio ({{ totalUsers() }} usuarios)</h1>
+</header>
 
-    <div class="users-grid">
-      @for (user of users(); track user.id) {
-        <article class="user-card">
-          <div class="user-card__header">
-            <div class="user-avatar">{{ user.name.charAt(0) }}</div>
-            <div>
-              <h3>{{ user.name }}</h3>
-              <span class="user-name">@{{ user.username }}</span>
-            </div>
-          </div>
 
-          <p><strong>Correo:</strong> {{ user.email }}</p>
-        </article>
-      }
-    </div>
-  </div>
-} @else {
-  <p>No hay usuarios para mostrar.</p>
-}
+<div class="users-grid">
+  @for (user of users(); track user.id) {
+    <app-user-card
+      [user]="user"
+      (eliminar)="eliminarUsuario($event)">
+    </app-user-card>
+  } @empty {
+    <p>No hay usuarios en el directorio.</p>
+  }
+</div>

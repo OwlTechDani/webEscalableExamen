@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input,output } from '@angular/core';
 import { User } from '../../interfaces/user.interface';
 
 @Component({
@@ -10,4 +10,10 @@ import { User } from '../../interfaces/user.interface';
 export class UserCardComponent {
   // Input requerido recibido desde el componente padre
   user = input.required<User>();
+
+  eliminar = output<number>();
+
+  eliminarUsuario(): void {
+  this.eliminar.emit(this.user().id);
+  }
 }

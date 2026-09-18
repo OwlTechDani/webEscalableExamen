@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component,computed, signal } from '@angular/core';
 import { User } from './interfaces/user.interface';
 import { UserCardComponent } from './components/user-card/user-card'; 
 import { Controls } from './components/controls/controls';
@@ -10,6 +10,8 @@ import { Controls } from './components/controls/controls';
   templateUrl: './app.html', 
   styleUrl: './app.css'   
 })
+
+
 export class App {
 // Ordenar alfabéticamente por nombre
   ordenarPorNombre(): void {
@@ -77,4 +79,13 @@ export class App {
       image: 'https://i.pravatar.cc/150?img=20'
     }
   ]);
+
+    totalUsers = computed(() => this.users().length);
+
+
+    eliminarUsuario(id: number): void {
+    this.users.update(users =>
+      users.filter(user => user.id !== id)
+    );
+  }
 }
