@@ -8,9 +8,6 @@
     <h2 class="user-name">{{ user().name }}</h2>
     <p class="user-username">&#64;{{ user().username }}</p>
     <p class="user-email">{{ user().email }}</p>
-
-    <button type="button" (click)="eliminarUsuario()">
-      Eliminar
-    </button>
+    <button type="button" (click)="delete()">Eliminar</button>
   </div>
 </article>
