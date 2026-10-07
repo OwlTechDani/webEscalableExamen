@@ -1,0 +1,15 @@
+.container {
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-grid>app-user-card {
+  flex: 0 1 320px;
+  min-width: 0;
+  margin: 20px;
+}

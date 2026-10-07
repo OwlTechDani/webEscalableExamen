@@ -1,0 +1,45 @@
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="modern-form">
+  <h2>Nuevo Usuario</h2>
+
+  <div class="form-control-group">
+    <label for="name">Nombre completo</label>
+    <input formControlName="name" id="name" type="text" placeholder="Ej. Leanne Graham">
+
+    @if(userForm.get('name')?.hasError('required') && userForm.get("name")?.touched){
+    <span class="error-text">El nombre es obligatorio.</span>
+    }
+    @if(userForm.get('name')?.hasError('minlength') && userForm.get("name")?.touched){
+    <span class="error-text">Debe tener al menos 3 caracteres.</span>
+    }
+
+  </div>
+
+  <div class="form-control-group">
+    <label for="email">Correo electrónico</label>
+    <input formControlName="email" id="email" type="email" placeholder="legra@gmail.com">
+    @if(userForm.get('email')?.hasError('required') && userForm.get("email")?.touched){
+    <span class="error-text">El correo es obligatorio.</span>
+    }
+    @if(userForm.get('email')?.hasError('email') && userForm.get("email")?.touched){
+    <span class="error-text">Ingresa un formato de correo válido.</span>
+    }
+  </div>
+
+  <div class="form-control-group">
+    <label for="username">Nombre de usuario</label>
+    <input formControlName="username" id="username" type="text" placeholder="Ej. LeGra">
+    @if(userForm.get('username')?.hasError('required') && userForm.get("username")?.touched){
+    <span class="error-text">El usuario es obligatorio.</span>
+    }
+  </div>
+
+  <div class="form-control-group">
+    <label for="image">URL de la Imagen</label>
+    <input formControlName="image" id="image" type="text" placeholder="Ej. https://i.pravatar.cc/150?img=1">
+    @if(userForm.get('image')?.hasError('required') && userForm.get("image")?.touched){
+    <span class="error-text">La URL de la imagen es obligatoria.</span>
+    }
+  </div>
+
+  <button type="submit" [disabled]="userForm.invalid">Guardar Usuario</button>
+</form>

@@ -1,0 +1,15 @@
+<main class="container">
+  <app-control (orderByIdClick)="orderById()" (orderByNameClick)="orderByName()" (reverseClick)="reverse()"
+    (search)="search($event)"></app-control>
+
+
+  <section class="card-grid">
+    @for (user of users(); track user.id) {
+    <app-user-card [user]="user" (deleteClick)="deleteUser($event)"></app-user-card>
+    }
+    @empty {
+    <p>Directorio vacío</p>
+    }
+  </section>
+
+</main>
