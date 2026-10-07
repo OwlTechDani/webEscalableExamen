@@ -1,10 +1,74 @@
 .user-card {
-  width: 320px;
-  margin: 20px;
-  /* (borde, padding, sombras o estilos previos de la tarjeta) */
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  width: 100%;
+  font-family: system-ui, -apple-system, sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.user-card img {
-  width: 100%;
-  /* estilos de la imagen */
+.user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.user-card:focus-within {
+  box-shadow: 0 15px 35px rgba(49, 46, 129, 0.18);
+}
+
+.card-header {
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  height: 100px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 4px solid #ffffff;
+  position: absolute;
+  bottom: -40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+  background-color: #f1f5f9;
+}
+
+.card-body {
+  padding: 50px 20px 25px;
+  text-align: center;
+}
+
+.user-badge {
+  background: #f1f5f9;
+  color: #64748b;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.user-name {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #1e293b;
+  font-weight: 700;
+}
+
+.user-username {
+  margin: 4px 0 8px;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.user-email {
+  margin: 0;
+  color: #6366f1;
+  font-size: 0.9rem;
+  font-weight: 500;
 }
