@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserCardComponent } from './user-card';
+import { UserCard } from './user-card';
 
 describe('UserCard', () => {
-  let component: UserCardComponent;
-  let fixture: ComponentFixture<UserCardComponent>;
+  let component: UserCard;
+  let fixture: ComponentFixture<UserCard>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserCardComponent],
+      imports: [UserCard],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(UserCardComponent);
+    fixture = TestBed.createComponent(UserCard);
 
     fixture.componentRef.setInput('user', {
       id: 1,
