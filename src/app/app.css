@@ -1,1 +1,109 @@
+/* Diseño de la navbar de Bootstrap 5.3, limitado a esta barra. */
+.site-navbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  margin-bottom: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: #312e81;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+}
 
+.site-navbar,
+.site-navbar * {
+  box-sizing: border-box;
+}
+
+.site-navbar>.container-fluid {
+  display: flex;
+  flex-wrap: inherit;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0.5rem 1.5rem;
+}
+
+.site-navbar .navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.3125rem 0;
+  margin-right: 1rem;
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-navbar .brand-mark {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border-radius: 0.6rem;
+  background: #ffffff;
+  color: #312e81;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.site-navbar .navbar-nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.site-navbar .nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  color: #e0e7ff;
+  text-decoration: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.site-navbar .nav-link:hover,
+.site-navbar .nav-link:focus-visible,
+.site-navbar .nav-link.active {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.site-navbar .nav-link-primary {
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #ffffff;
+}
+
+@media (max-width: 640px) {
+  .site-navbar > .container-fluid,
+  .site-navbar .navbar-nav {
+    justify-content: center;
+  }
+
+  .site-navbar > .container-fluid {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-navbar .nav-link {
+    transition: none;
+  }
+}
+
+.active {
+  font-weight: bold;
+  color: white;
+}
