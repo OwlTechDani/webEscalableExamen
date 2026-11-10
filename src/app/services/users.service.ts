@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { User } from '../interfaces/user.interface';
+import { User } from '../interfaces/directory-user.interface';
 
 @Injectable({ providedIn: 'root' })
 export class UsersService {
@@ -78,4 +78,5 @@ export class UsersService {
   reverse(): void {
     this.usersState.update(users => [...users].reverse());
   }
+
 }

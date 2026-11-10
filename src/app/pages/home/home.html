@@ -1,0 +1,37 @@
+<div class="home-heading">
+  <h1>Recent resources</h1>
+  @if (auth.user()) {
+    <a class="btn btn-primary" routerLink="/resources/new">+ Add resource</a>
+  }
+</div>
+
+<div class="filters">
+  <label for="type-filter">Resource type:</label>
+  <select
+    class="select select-sm"
+    id="type-filter"
+    #typeFilter
+    [value]="catalog.resourceType()"
+    (change)="catalog.resourceType.set(typeFilter.value)"
+  >
+    <option value="">All</option>
+    @for (type of catalog.resourceTypes; track type) {
+      <option [value]="type">{{ type }}</option>
+    }
+  </select>
+  <button class="btn btn-sm" type="button" (click)="catalog.clearFilters()">Clear filters</button>
+</div>
+
+@if (catalog.category() || catalog.tag()) {
+  <p class="selected-filters">
+    Category: {{ catalog.category() || 'All' }} · Tag: {{ catalog.tag() || 'All' }}
+  </p>
+}
+
+<section class="resource-list" aria-label="Resources">
+  @for (resource of catalog.filteredResources(); track resource.id) {
+    <app-resource-card [resource]="resource" />
+  } @empty {
+    <p>No resources found.</p>
+  }
+</section>

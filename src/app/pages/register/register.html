@@ -1,0 +1,48 @@
+<section class="panel form-panel">
+  <h1>Register</h1>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-field">
+      <label for="register-name">Name</label>
+      <input class="input" id="register-name" formControlName="name" autocomplete="name" />
+      @if (form.controls.name.touched && form.controls.name.invalid) {
+        <span class="error">Name must have at least 3 characters.</span>
+      }
+    </div>
+
+    <div class="form-field">
+      <label for="register-email">Email</label>
+      <input
+        class="input"
+        id="register-email"
+        type="email"
+        formControlName="email"
+        autocomplete="email"
+      />
+      @if (form.controls.email.touched && form.controls.email.invalid) {
+        <span class="error">Enter a valid email address.</span>
+      }
+    </div>
+
+    <div class="form-field">
+      <label for="register-password">Password</label>
+      <input
+        class="input"
+        id="register-password"
+        type="password"
+        formControlName="password"
+        autocomplete="new-password"
+      />
+      @if (form.controls.password.touched && form.controls.password.invalid) {
+        <span class="error">Password must have at least 8 characters.</span>
+      }
+    </div>
+    <button class="btn btn-primary" type="submit">Validate registration</button>
+  </form>
+  @if (validated) {
+    <p class="message" role="status">Valid details. Account creation is not available yet.</p>
+  }
+  <p class="message">
+    <a class="text-link" routerLink="/login">Back to Login</a>
+  </p>
+</section>

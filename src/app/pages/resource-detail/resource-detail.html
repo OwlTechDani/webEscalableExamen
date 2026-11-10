@@ -1,0 +1,48 @@
+<a class="back-link" routerLink="/home">Back to resources</a>
+
+@if (resource; as item) {
+  <article class="panel">
+    <div class="detail-heading">
+      <h1>{{ item.title }}</h1>
+
+      @if (item.imageUrl && !imageFailed) {
+        <img [src]="item.imageUrl" [alt]="item.title" (error)="imageFailed = true" />
+      }
+    </div>
+
+    <p class="description">{{ item.description }}</p>
+
+    <p class="muted">Category: {{ item.category }} · Type: {{ item.resourceType }}</p>
+
+    <p class="muted">{{ item.author.name }} · {{ item.createdAt }}</p>
+
+    <p>
+      Tags:
+
+      @for (tag of item.tags; track tag) {
+        <span class="badge badge-outline">{{ tag }}</span>
+      } @empty {
+        <span>No tags</span>
+      }
+    </p>
+
+    <a class="btn btn-primary" [href]="item.url" target="_blank" rel="noopener noreferrer">
+      Visit website
+    </a>
+  </article>
+
+  <section class="panel comments">
+    <h2>Comments</h2>
+
+    @for (comment of comments; track comment.id) {
+      <div class="comment">
+        <strong>{{ comment.author.name }}</strong>
+        <p>{{ comment.text }}</p>
+      </div>
+    } @empty {
+      <p>No comments yet.</p>
+    }
+  </section>
+} @else {
+  <p>Resource not found.</p>
+}

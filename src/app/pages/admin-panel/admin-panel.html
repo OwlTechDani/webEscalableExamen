@@ -1,0 +1,85 @@
+<h1>Admin panel</h1>
+
+<div class="admin-tabs">
+  @for (tab of tabs; track tab) {
+    <button
+      class="btn btn-sm"
+      type="button"
+      [class.btn-primary]="activeTab === tab"
+      [attr.aria-pressed]="activeTab === tab"
+      (click)="activeTab = tab"
+    >
+      {{ tab }}
+    </button>
+  }
+</div>
+
+<section class="panel">
+  <h2>{{ activeTab }}</h2>
+
+  <div class="table-container">
+    @if (activeTab === 'Users') {
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (user of users; track user.id) {
+            <tr>
+              <td>{{ user.name }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.role }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    } @else if (activeTab === 'Resources') {
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (resource of catalog.resources(); track resource.id) {
+            <tr>
+              <td>
+                <a class="text-link" [routerLink]="['/resources', resource.id]">
+                  {{ resource.title }}
+                </a>
+              </td>
+              <td>{{ resource.author.name }}</td>
+              <td>{{ resource.category }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    } @else {
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (item of classificationItems(); track item) {
+            <tr>
+              <td>{{ item }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+
+  <p class="message muted">Read-only view. Creating, editing and deleting will be added later.</p>
+</section>

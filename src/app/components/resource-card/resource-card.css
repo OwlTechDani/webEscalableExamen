@@ -1,0 +1,48 @@
+.resource-card {
+  display: flex;
+  gap: 20px;
+  padding: 18px;
+  background: #fffaf2;
+  border: 1px solid #c9b79c;
+  border-radius: 6px;
+}
+
+.resource-card > a {
+  flex-shrink: 0;
+}
+
+img,
+.image-placeholder {
+  width: 140px;
+  height: 110px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.image-placeholder {
+  display: grid;
+  place-items: center;
+  background: #c9b79c;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 19px;
+  margin-bottom: 8px;
+}
+
+h2 a:hover {
+  text-decoration: underline;
+}
+
+p {
+  margin-bottom: 6px;
+}
+
+@media (max-width: 600px) {
+  .resource-card {
+    flex-direction: column;
+    gap: 12px;
+  }
+}

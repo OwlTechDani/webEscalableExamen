@@ -1,0 +1,99 @@
+<section class="panel form-panel">
+  <h1>Add resource</h1>
+  @if (!auth.user()) {
+    <p class="message muted">
+      You can view this form without logging in. To try publishing, choose a demo profile on
+      <a class="text-link" routerLink="/login">Login</a>
+      .
+    </p>
+  }
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-field">
+      <label for="resource-title">Title</label>
+      <input class="input" id="resource-title" formControlName="title" />
+      @if (form.controls.title.touched && form.controls.title.invalid) {
+        <span class="error">Title is required.</span>
+      }
+    </div>
+
+    <div class="form-field">
+      <label for="resource-url">URL</label>
+      <input
+        class="input"
+        id="resource-url"
+        type="url"
+        formControlName="url"
+        placeholder="https://example.com"
+      />
+      @if (form.controls.url.touched && form.controls.url.invalid) {
+        <span class="error">URL is required.</span>
+      }
+    </div>
+
+    <div class="form-field">
+      <label for="resource-description">Description</label>
+      <textarea class="textarea" id="resource-description" formControlName="description"></textarea>
+      @if (form.controls.description.touched && form.controls.description.invalid) {
+        <span class="error">Description is required.</span>
+      }
+    </div>
+
+    <div class="form-field">
+      <label for="resource-category">Category</label>
+      <select class="select" id="resource-category" formControlName="category">
+        <option value="">Select</option>
+        @for (category of catalog.categories; track category) {
+          <option [value]="category">{{ category }}</option>
+        }
+      </select>
+      @if (form.controls.category.touched && form.controls.category.invalid) {
+        <span class="error">Select a category.</span>
+      }
+    </div>
+
+    <div class="form-field">
+      <label for="resource-type">Resource type</label>
+      <select class="select" id="resource-type" formControlName="resourceType">
+        <option value="">Select</option>
+        @for (type of catalog.resourceTypes; track type) {
+          <option [value]="type">{{ type }}</option>
+        }
+      </select>
+      @if (form.controls.resourceType.touched && form.controls.resourceType.invalid) {
+        <span class="error">Select a resource type.</span>
+      }
+    </div>
+
+    <div class="form-field">
+      <label for="resource-tags">Tags (optional)</label>
+      <select
+        class="select tag-select"
+        id="resource-tags"
+        formControlName="tags"
+        multiple
+        size="3"
+        aria-describedby="tags-help"
+      >
+        @for (tag of catalog.tags; track tag) {
+          <option [value]="tag">{{ tag }}</option>
+        }
+      </select>
+      <small class="muted" id="tags-help">Select multiple tags with Ctrl or Cmd.</small>
+    </div>
+
+    <div class="form-field">
+      <label for="resource-image">Image URL (optional)</label>
+      <input class="input" id="resource-image" type="url" formControlName="imageUrl" />
+    </div>
+    @if (error) {
+      <p class="error" role="alert">{{ error }}</p>
+    }
+
+    <div class="actions">
+      <button class="btn btn-primary" type="submit" [disabled]="!auth.user()">Publish</button>
+      <a class="btn" routerLink="/home">Cancel</a>
+    </div>
+  </form>
+  <p class="message muted">The resource is saved temporarily until you reload the page.</p>
+</section>

@@ -1,0 +1,40 @@
+.home-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.home-heading h1 {
+  margin: 0;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filters select {
+  width: 180px;
+}
+
+.selected-filters {
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+
+.resource-list {
+  display: grid;
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .home-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

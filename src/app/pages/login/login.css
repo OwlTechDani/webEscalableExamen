@@ -1,0 +1,10 @@
+hr {
+  margin: 20px 0;
+  border-color: #c9b79c;
+}
+
+.demo-buttons {
+  display: flex;
+  gap: 10px;
+  margin: 12px 0;
+}

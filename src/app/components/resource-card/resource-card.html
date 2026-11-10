@@ -1,0 +1,23 @@
+<article class="resource-card">
+  <a [routerLink]="['/resources', resource().id]" [attr.aria-label]="'View ' + resource().title">
+    @if (resource().imageUrl && !imageFailed) {
+      <img [src]="resource().imageUrl" [alt]="resource().title" (error)="imageFailed = true" />
+    } @else {
+      <div class="image-placeholder">FH</div>
+    }
+  </a>
+
+  <div>
+    <h2>
+      <a [routerLink]="['/resources', resource().id]">
+        {{ resource().title }}
+      </a>
+    </h2>
+
+    <p>{{ resource().description }}</p>
+
+    <p class="muted">{{ resource().category }} · {{ resource().resourceType }}</p>
+
+    <p class="muted">{{ resource().author.name }} · {{ resource().createdAt }}</p>
+  </div>
+</article>

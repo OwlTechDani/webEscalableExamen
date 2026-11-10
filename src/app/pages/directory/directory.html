@@ -1,0 +1,44 @@
+<h1>Directorio de personas</h1>
+<form class="flex flex-wrap gap-2 mb-4" (submit)="$event.preventDefault(); load()">
+  <input class="input" type="search" aria-label="Buscar por nombre o username" placeholder="Nombre o username" [formControl]="search" />
+  <button class="btn" type="submit">Buscar</button>
+</form>
+
+@if (error()) { <p class="alert alert-error mb-4" role="alert">{{ error() }}</p> }
+@if (message()) { <p class="alert alert-success mb-4" role="status">{{ message() }}</p> }
+
+<section class="card bg-base-100 p-4 mb-6">
+  <h2>{{ editingId() ? 'Editar persona' : 'Agregar persona' }}</h2>
+  <form class="grid gap-3" [formGroup]="form" (ngSubmit)="save()">
+    <label>Nombre <input class="input w-full" formControlName="name" required /></label>
+    <label>Username <input class="input w-full" formControlName="username" required /></label>
+    <label>Email <input class="input w-full" type="email" formControlName="email" required /></label>
+    <label>URL de imagen (opcional) <input class="input w-full" type="url" formControlName="image" /></label>
+    @if (form.invalid && form.touched) {
+      <p role="alert">Completa nombre, username y un email válido.</p>
+    }
+    <div class="flex gap-2">
+      <button class="btn btn-primary" type="submit" [disabled]="saving()">{{ saving() ? 'Guardando…' : 'Guardar' }}</button>
+      @if (editingId()) {
+        <button class="btn" type="button" [disabled]="saving()" (click)="cancel()">Cancelar edición</button>
+      }
+    </div>
+  </form>
+</section>
+
+@if (loading()) { <p role="status">Cargando personas…</p> }
+<section class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" aria-label="Personas">
+  @for (person of persons(); track person._id) {
+    <article class="card bg-base-100 p-4">
+      <h2>{{ person.name }}</h2>
+      <p>&#64;{{ person.username }}</p>
+      <p>{{ person.email }}</p>
+      <div class="flex gap-2 mt-3">
+        <button class="btn btn-sm" type="button" [disabled]="saving()" (click)="edit(person)">Editar</button>
+        <button class="btn btn-sm btn-error" type="button" [disabled]="saving()" (click)="remove(person)">Eliminar</button>
+      </div>
+    </article>
+  } @empty {
+    @if (!loading() && !error()) { <p>No se encontraron personas.</p> }
+  }
+</section>
